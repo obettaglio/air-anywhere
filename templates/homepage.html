@@ -4,20 +4,39 @@
 
 {% block content %}
 
-<div id='homepage-container' class="container">
-  <div id='homepage-first-row' class='row'>
-
-    <div class='homepage-outer-div'>
-      <h1 class='homepage-main' id='homepage-title'>AirAnywhere</h1>
+<div id='homepage-container' class="container body-container">
+  <div id='title-div' class='row'>
+    <div class='col-lg-4'>
     </div>
+    <div class='col-lg-4'>
+      <h1 class='title'>AirAnywhere</h1>
+    </div>
+  </div>
 
-    <div id='homepage-inner-div'>
-
-      <div class='btn-holder'>
-        <a href="/load-destination" class='btn btn-primary' id='load-destination-btn'>Find a Destination</a><br>
+  <div id='form-div' class='row'>
+    <div class='col-lg-4'>
+    </div>
+    <div class='col-lg-4'>
+      <div class='form-holder'>
+        <form id='origin-airport-form'>
+          <label for='origin'>Origin Location: </label>
+          <input type='text' class='form-control' id='origin-airport-field' name='origin-airport' list='airports' placeholder='Select your airport'></br>
+          <datalist id='airports'>
+            <option value='San Francisco, CA, USA (SFO)'>
+            <option value='San Jose, CA, USA (SJC)'>
+          </datalist>
+          <input type='submit' class='btn btn-primary' id='find-destination-btn' value='Find a Destination'>
+        </form>
       </div>
     </div>
 
+      <!-- <div class='btn-holder'>
+        <a href="/load-destination" class='btn btn-primary' id='load-destination-btn'>Find a Destination</a><br>
+      </div> -->
+  </div>
+
+  <div id='results-div' class='row'>
+    Results!
   </div>
 </div>
 

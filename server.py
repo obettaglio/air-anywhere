@@ -3,7 +3,7 @@
 from jinja2 import StrictUndefined
 from flask import Flask, jsonify, render_template, redirect, request
 from flask_sqlalchemy import SQLAlchemy
-from flask_debugtoolbar import DebugToolbarExtension
+# from flask_debugtoolbar import DebugToolbarExtension
 from datetime import datetime
 
 db = SQLAlchemy()
@@ -24,8 +24,8 @@ def index():
     return render_template('homepage.html')
 
 
-@app.route('/load-destination', methods=['POST'])
-def load_destination():
+@app.route('/find-destination', methods=['POST'])
+def find_destination():
     """Generates random destination and loads flight information."""
 
     pass
@@ -35,7 +35,7 @@ def load_destination():
 
 
 def connect_to_db(app):
-    """Connect the database to our Flask app."""
+    """Connect the database to Flask app."""
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///air-anywhere'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -49,6 +49,6 @@ if __name__ == "__main__":
 
     connect_to_db(app)
 
-    DebugToolbarExtension(app)
+    # DebugToolbarExtension(app)
 
     app.run(port=5000, host='0.0.0.0')
