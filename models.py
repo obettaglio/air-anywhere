@@ -14,7 +14,7 @@ class Airport(db.Model):
 
     airport_id = db.Column(db.Integer, autoincrement=False, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
-    iata_code = db.Column(db.String(10), nullable=False)
+    code = db.Column(db.String(10), nullable=False)
     latitude_deg = db.Column(db.Float, nullable=False)
     longitude_deg = db.Column(db.Float, nullable=False)
     continent = db.Column(db.String(10), nullable=False)
@@ -67,7 +67,6 @@ class Region(db.Model):
 
 
 #####
-
 
 def connect_to_db(app):
     """Connect the database to Flask app."""

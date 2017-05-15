@@ -22,17 +22,14 @@
           <label for='origin'>Origin Location: </label>
           <input type='text' class='form-control' id='origin-airport-field' name='origin-airport' list='airports' placeholder='Select your airport'></br>
           <datalist id='airports'>
-            <option value='San Francisco, CA, USA (SFO)'>
-            <option value='San Jose, CA, USA (SJC)'>
+            {% for airport in airports %}
+            <option value='{{ airport.name }} {% if airport.code %} ({{ airport.code }}) {% endif %}'>
+            {% endfor %}
           </datalist>
           <input type='submit' class='btn btn-primary' id='find-destination-btn' value='Find a Destination'>
         </form>
       </div>
     </div>
-
-      <!-- <div class='btn-holder'>
-        <a href="/load-destination" class='btn btn-primary' id='load-destination-btn'>Find a Destination</a><br>
-      </div> -->
   </div>
 
   <div id='results-div' class='row'>

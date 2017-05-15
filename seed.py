@@ -5,6 +5,8 @@ from models import Airport, Country, Region, connect_to_db, db
 import csv
 
 
+#####
+
 def load_airports():
     """Load airports from CSV file into database."""
 
@@ -16,7 +18,7 @@ def load_airports():
         for row in airports_reader:
             airport_id = row[0]
             name = row[3]
-            iata_code = row[13]
+            code = row[13]          # iata_code
             latitude_deg = row[4]
             longitude_deg = row[5]
             continent = row[7]
@@ -24,9 +26,17 @@ def load_airports():
             iso_region = row[9]
             municipality = row[10]
 
+            # if iata_code is empty, try local_code
+            if code == '':
+                code = row[14]
+
+            # if local_code is also empty, try gps_code
+            if code == '':
+                code = row[12]
+
             airport = Airport(airport_id=airport_id,
                               name=name,
-                              iata_code=iata_code,
+                              code=code,
                               latitude_deg=latitude_deg,
                               longitude_deg=longitude_deg,
                               continent=continent,
@@ -78,6 +88,8 @@ def load_regions():
 
         db.session.commit()
 
+
+#####
 
 def call_all_functions():
     """Call all seeding functions."""

@@ -4,17 +4,16 @@ from jinja2 import StrictUndefined
 from flask import Flask, jsonify, render_template, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 # from flask_debugtoolbar import DebugToolbarExtension
-from models import connect_to_db
+from models import Airport, Country, Region, connect_to_db
 from datetime import datetime
 
 db = SQLAlchemy()
-
 app = Flask(__name__)
-
 app.secret_key = 'skahgwgjrnwrijog'
-
 app.jinja_env.undefined = StrictUndefined
 
+
+#####
 
 @app.route('/')
 def index():
@@ -22,7 +21,10 @@ def index():
 
     Homepage contains Origin Location field and Find a Destination button."""
 
-    return render_template('homepage.html')
+    airports = db.session.query(Airport.name, Airport.code).all()
+
+    return render_template('homepage.html',
+                           airports=airports)
 
 
 @app.route('/find-destination', methods=['POST'])
@@ -33,7 +35,6 @@ def find_destination():
 
 
 #####
-
 
 if __name__ == "__main__":
     app.debug = True
