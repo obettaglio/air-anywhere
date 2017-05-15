@@ -20,10 +20,10 @@
       <div class='form-holder'>
         <form id='origin-airport-form'>
           <label for='origin'>Origin Location: </label>
-          <input type='text' class='form-control' id='origin-airport-field' name='origin-airport' list='airports' placeholder='Select your airport'></br>
-          <datalist id='airports'>
+          <input type='text' class='form-control' id='origin-airport-field' name='origin-airport' list='airport-list' placeholder='Select your airport'></br>
+          <datalist id='airport-list'>
             {% for airport in airports %}
-            <option value='{{ airport.name }} {% if airport.code %} ({{ airport.code }}) {% endif %}'>
+            <option value='{{ airport.name }}{% if airport.code %} ({{ airport.code }}){% endif %}'>
             {% endfor %}
           </datalist>
           <input type='submit' class='btn btn-primary' id='find-destination-btn' value='Find a Destination'>
