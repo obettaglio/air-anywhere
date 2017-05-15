@@ -12,18 +12,11 @@ class Airport(db.Model):
 
     __tablename__ = "airports"
 
-# "id","ident","type","name","latitude_deg","longitude_deg","elevation_ft","continent",
-# "iso_country","iso_region","municipality","scheduled_service","gps_code","iata_code","local_code",
-# "home_link","wikipedia_link","keywords"
-# 3878,"KSFO","large_airport","San Francisco International Airport",37.61899948120117,-122.375,13,"NA",
-# "US","US-CA","San Francisco","yes","KSFO","SFO","SFO",
-# "http://www.flysfo.com/","http://en.wikipedia.org/wiki/San_Francisco_International_Airport","QSF, QBA"
-
     airport_id = db.Column(db.Integer, autoincrement=False, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
     iata_code = db.Column(db.String(10), nullable=False)
-    latitude_deg = db.Column(db.Integer, nullable=False)
-    longitude_deg = db.Column(db.Integer, nullable=False)
+    latitude_deg = db.Column(db.Float, nullable=False)
+    longitude_deg = db.Column(db.Float, nullable=False)
     continent = db.Column(db.String(10), nullable=False)
     iso_country = db.Column(db.String(10), db.ForeignKey('countries.code'))
     iso_region = db.Column(db.String(10), db.ForeignKey('regions.code'))
@@ -46,9 +39,6 @@ class Airport(db.Model):
 class Country(db.Model):
     """Country codes corresponding to country names."""
 
-# "id","code","name","continent","wikipedia_link","keywords"
-# 302672,"AD","Andorra","EU","http://en.wikipedia.org/wiki/Andorra",
-
     __tablename__ = "countries"
 
     code = db.Column(db.String(10), primary_key=True)
@@ -63,9 +53,6 @@ class Country(db.Model):
 
 class Region(db.Model):
     """Region codes corresponding to region names."""
-
-# "id","code","local_code","name","continent","iso_country","wikipedia_link","keywords"
-# 302811,"AD-02",02,"Canillo","EU","AD","http://en.wikipedia.org/wiki/Canillo",
 
     __tablename__ = "regions"
 
@@ -83,7 +70,7 @@ class Region(db.Model):
 
 
 def connect_to_db(app):
-    """Connect the database to our Flask app."""
+    """Connect the database to Flask app."""
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///air-anywhere'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -95,4 +82,3 @@ if __name__ == "__main__":
 
     from server import app
     connect_to_db(app)
-    print "Connected to DB."

@@ -4,6 +4,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, jsonify, render_template, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 # from flask_debugtoolbar import DebugToolbarExtension
+from models import connect_to_db
 from datetime import datetime
 
 db = SQLAlchemy()
@@ -32,15 +33,6 @@ def find_destination():
 
 
 #####
-
-
-def connect_to_db(app):
-    """Connect the database to Flask app."""
-
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///air-anywhere'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    db.app = app
-    db.init_app(app)
 
 
 if __name__ == "__main__":
