@@ -26,17 +26,20 @@ request.onreadystatechange = function(response) {
       });
 
       // Update the placeholder text.
-      input.placeholder = "e.g. datalist";
+      input.placeholder = "Select your airport";
     } else {
       // An error occured.
-      input.placeholder = "Couldn't load datalist options :(";
+      input.placeholder = "Couldn't load datalist options";
     }
   }
 };
 
 // Update the placeholder text.
-input.placeholder = "Loading options...";
+input.placeholder = "Select your airport";
+
+// Convert CSV file to JSON.
+airportsJSON = csvToJSON('/static/data/airports.csv');
 
 // Set up and make the request.
-request.open('GET', 'airports.json', true);
+request.open('GET', airportsJSON, true);
 request.send();
