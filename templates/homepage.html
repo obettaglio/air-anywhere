@@ -10,8 +10,8 @@
     </div>
     <div class='col-lg-4'>
       <h1 class='title'>AirAnywhere</h1>
-    </div>
-  </div>
+    </div><!-- column -->
+  </div><!-- title-div -->
 
   <div id='form-div' class='row'>
     <div class='col-lg-4'>
@@ -26,16 +26,15 @@
             <option value='{{ airport.name }}{% if airport.code %} ({{ airport.code }}){% endif %}'>
             {% endfor %}
           </datalist>
-          <input type='submit' class='btn btn-primary' id='find-destination-btn' value='Find a Destination'>
+          <input type='submit' class='btn btn-primary btn-block' id='find-destination-btn' value='Find a Destination'>
         </form>
-      </div>
-    </div>
-  </div>
+      </div><!-- form-holder -->
+    </div><!-- column -->
+  </div><!-- form-div -->
 
   <div id='results-div' class='row'>
-    Results!
-  </div>
-</div>
+  </div><!-- results-div -->
+</div><!-- homepage-container -->
 
 
 {% endblock %}

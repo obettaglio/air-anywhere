@@ -1,5 +1,4 @@
 .container.body-container {
-    /*background: url("/static/images/crossword.png");*/
     border-radius: 7px;
     min-height: 500px;
 }
@@ -8,13 +7,21 @@
     width: 100%;
 }
 
-.title,
-#origin-location-form {
-    text-align: center;
+#title-div {
+    padding-top: 50px;
+}
+
+#form-div {
+    padding-top: 20px;
 }
 
 #results-div {
     display: none;
+}
+
+.title,
+#origin-location-form {
+    text-align: center;
 }
 
 .footer {
@@ -35,7 +42,6 @@
 
 .footer-links li {
     display: inline-block;
-    /*line-height: 16px;*/
     padding-right: 10px;
     font-size: 10px;
 }
