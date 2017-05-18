@@ -1,5 +1,5 @@
 // Convert CSV file to JSON.
-function csvToJSON(csv){
+function csvToJSON(csv) {
 
   var lines = csv.split("\n");
 
@@ -7,12 +7,12 @@ function csvToJSON(csv){
 
   var headers = lines[0].split(",");
 
-  for(var i = 1; i < lines.length; i++){
+  for(var i = 1; i < lines.length; i++) {
 
       var obj = {};
       var currentline = lines[i].split(",");
 
-      for(var j = 0; j < headers.length; j++){
+      for(var j = 0; j < headers.length; j++) {
           obj[headers[j]] = currentline[j];
       }
 

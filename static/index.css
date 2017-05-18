@@ -20,7 +20,8 @@
 }
 
 .title,
-#origin-location-form {
+#origin-location-form,
+#destination {
     text-align: center;
 }
 

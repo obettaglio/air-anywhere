@@ -22,8 +22,6 @@ def index():
 
     Homepage contains Origin Location field and Find a Destination button."""
 
-    # session['seen_destinations'] = set()
-
     airports = db.session.query(Airport.name, Airport.code).filter(Airport.code != '').all()
 
     return render_template('homepage.html',
@@ -35,27 +33,26 @@ def find_destination():
     """Generates random destination and loads flight information."""
 
     origin_airport = request.form.get('origin_airport')
+
+    # Check for invalid empty request.
+    if origin_airport == '':
+        return jsonify({'is_valid_request': False})
+
     origin_airport_list = origin_airport.split('(')
     origin_airport_code = origin_airport_list[1][:-1]
 
-    # session['seen_destinations'].add(origin_airport_code)
     session['origin_airport'] = origin_airport_code
+    print session['origin_airport']
 
-    # destination = False
-
-    # while (destination is False) or (destination.code not in session['seen_destinations']):
-        # destination = db.session.query(Airport).filter(Airport.code != '')\
-        #                                        .order_by(func.random()).limit(1).first()
-
-    # session['seen_destinations'].add(destination.code)
-
-    destination = db.session.query(Airport).filter(Airport.code != '')\
+    destination = db.session.query(Airport).filter((Airport.code != '') & (Airport.code != session['origin_airport']))\
                                            .order_by(func.random()).limit(1).first()
 
-    destination_dict = {'destination_name': destination.name,
+    destination_dict = {'is_valid_request': True,
+                        'destination_name': destination.name,
                         'destination_code': destination.code}
 
     return jsonify(destination_dict)
+
 
 #####
 

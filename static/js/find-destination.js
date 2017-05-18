@@ -1,10 +1,17 @@
 // Adding a student to the roster
 
 function showDestinationAirport(result) {
+    // check for invalid requests,
     // add destination information to results-div,
     // show results-div
 
-    $('#results-div').html("You're flying to: " + result.destination_name + " (" + result.destination_code + ")");
+    if (result.is_valid_request == false) {
+        $('#destination').html("Please choose a valid airport from list.");
+
+    } else {
+        $('#destination').html("You're flying to: " + result.destination_name + " (" + result.destination_code + ")");
+    }
+
     $('#results-div').show();
 }
 

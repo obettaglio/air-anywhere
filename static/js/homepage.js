@@ -12,6 +12,28 @@ var request = new XMLHttpRequest();
 request.onreadystatechange = function(response) {
   if (request.readyState === 4) {
     if (request.status === 200) {
+
+      // var lines = request.responseText.split("\n");
+      // var result = [];
+      // var headers = lines[0].split(",");
+
+      // for (var i = 1; i < lines.length; i++) {
+      //   var obj = {};
+      //   var currentLine = lines[i].split(",");
+
+      //   for (var j = 0; j < headers.length; j++) {
+      //     obj[headers[j]] = currentLine[j];
+      //   }
+
+      //   result.push(obj);
+
+      // }
+
+      // resultJSON = JSON.stringify(result);
+      // console.log(resultJSON);
+
+      // console.log(request.responseText);
+
       // Parse the JSON
       var jsonOptions = JSON.parse(request.responseText);
 
@@ -35,11 +57,8 @@ request.onreadystatechange = function(response) {
 };
 
 // Update the placeholder text.
-input.placeholder = "Select your airport";
-
-// Convert CSV file to JSON.
-airportsJSON = csvToJSON('/static/data/airports.csv');
+input.placeholder = "Loading...";
 
 // Set up and make the request.
-request.open('GET', airportsJSON, true);
+request.open('GET', '/static/data/airports.json', true);
 request.send();
