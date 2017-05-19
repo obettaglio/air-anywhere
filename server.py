@@ -44,7 +44,9 @@ def find_destination():
     session['origin_airport'] = origin_airport_code
     print session['origin_airport']
 
-    destination = db.session.query(Airport).filter((Airport.code != '') & (Airport.code != session['origin_airport']))\
+    destination = db.session.query(Airport).filter((Airport.code != '') & \
+                                                   (Airport.code != session['origin_airport']) & \
+                                                   (Airport.size == 'large_airport'))\
                                            .order_by(func.random()).limit(1).first()
 
     destination_dict = {'is_valid_request': True,

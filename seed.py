@@ -19,6 +19,7 @@ def load_airports():
             airport_id = row[0]
             name = row[3]
             code = row[13]          # iata_code
+            size = row[2]
             latitude_deg = row[4]
             longitude_deg = row[5]
             continent = row[7]
@@ -37,6 +38,7 @@ def load_airports():
             airport = Airport(airport_id=airport_id,
                               name=name,
                               code=code,
+                              size=size,
                               latitude_deg=latitude_deg,
                               longitude_deg=longitude_deg,
                               continent=continent,
